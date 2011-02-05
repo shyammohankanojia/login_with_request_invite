@@ -1,0 +1,36 @@
+<script language="javascript">
+function checkAll(formId) {
+  var frmId=document.getElementById(formId);
+  var reclen =  frmId.length;
+    if(frmId.check_all.checked == true){
+      for(i=1;i < reclen;i++) { 
+        if(frmId.elements[i].name != 'send_all')
+          frmId.elements[i].checked=true;        
+          }
+          }else{
+          for(i=1;i < reclen;i++) {
+              frmId.elements[i].checked=false;        
+          }
+      }     
+}
+</script>
+
+
+<h1>User List </h1>
+<% form_tag({:action =>'active_user'},:id=>'user_list') do %>
+  <table >
+  <th ><input type="checkbox" name="check_all" id="checkbox" onClick="checkAll('user_list');"/></th> 
+  <th>User Name</th><th>Email</th>
+    <% for user in @users %>
+        <tr class="<%= cycle "Swhitetd", "Sgreytd" %>">
+          <td ><input type="checkbox" name="selectuser[<%= user.id %>]" id="checkbox" /></td>
+          <td><%= user.login %> </td>
+          <td><%= user.email %> </td>
+        </tr>
+    <% end %>
+    <tr><td colspan="3">
+    <%= submit_tag "Activate User" ,:class =>'greybtn'%>
+    </td></tr>
+  </table>
+<% end %>
+
