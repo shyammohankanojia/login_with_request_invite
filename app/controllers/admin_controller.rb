@@ -13,7 +13,7 @@ class AdminController < ApplicationController
        params[:selectuser].each do |userid,val|
         user = User.find(userid)
         user.update_attribute('active',true)
-        UserMailer.activation(user).deliver if user.recently_activated? and user.active?
+        UserMailer.activation(user).deliver 
       end
       flash[:notice]="User successfully Activated"
       redirect_to :action =>'user_list'
