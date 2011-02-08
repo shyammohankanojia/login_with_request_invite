@@ -20,7 +20,7 @@ function checkAll(formId) {
 <% form_tag({:action =>'active_user'},:id=>'user_list') do %>
   <table >
   <th ><input type="checkbox" name="check_all" id="checkbox" onClick="checkAll('user_list');"/></th> 
-  <th>User Name</th><th>Email</th>
+  <th>Email</th>
     <% for user in @users %>
         <tr class="<%= cycle "Swhitetd", "Sgreytd" %>">
           <td ><input type="checkbox" name="selectuser[<%= user.id %>]" id="checkbox" /></td>
