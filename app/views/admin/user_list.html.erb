@@ -24,7 +24,6 @@ function checkAll(formId) {
     <% for user in @users %>
         <tr class="<%= cycle "Swhitetd", "Sgreytd" %>">
           <td ><input type="checkbox" name="selectuser[<%= user.id %>]" id="checkbox" /></td>
-          <td><%= user.login %> </td>
           <td><%= user.email %> </td>
         </tr>
     <% end %>

@@ -7,6 +7,10 @@ Site::Application.routes.draw do
   controller :admin do
     post '/admin/active_user' => 'admin#active_user'
   end
+  controller :users do
+    get '/users/signup_request' => 'users#signup_request'
+     post'/users/signup_request' => 'users#signup_request'
+  end
 
   resources :users
   resource :session, :only => [:new, :create, :destroy]

@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   #
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
-    u = where( :login => login).where(:active => true).where("activated_at IS NOT NULL").first # need to get the salt
+    u = where( :login => login).where("activated_at IS NOT NULL").first # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
 

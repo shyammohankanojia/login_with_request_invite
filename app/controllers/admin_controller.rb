@@ -4,16 +4,16 @@ class AdminController < ApplicationController
   end
 
   def user_list
-    @users = User.where(:active =>'false')
+    @users = Request.where(:status =>false)
   end
 
   def active_user
 #  render :text =>params[:selectuser].inspect;return
     if request.post?
        params[:selectuser].each do |userid,val|
-        user = User.find(userid)
-        user.update_attribute('active',true)
-        UserMailer.activation(user).deliver 
+        user = Request.find(userid)
+        user.update_attribute('status',1)
+        UserMailer.approve_notification(user).deliver 
       end
       flash[:notice]="User successfully Activated"
       redirect_to :action =>'user_list'
